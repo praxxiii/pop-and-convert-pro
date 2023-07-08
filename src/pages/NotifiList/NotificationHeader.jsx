@@ -5,7 +5,7 @@ export default function NotificationHeader() {
                 <div className="container-fluid">
                     <h1 className="card-title">Notification</h1>
                     <form className="d-flex" role="search">
-                        <input style={{width:"500px"}} className="form-control me-2" type="search" placeholder="What are you looking for..." aria-label="Search"/>
+                        <input style={{width:"25vw"}} className="form-control me-2" type="search" placeholder="What are you looking for..." aria-label="Search"/>
                         <button style={{width:"50%"}} className="btn btn-primary" type="submit">Add Notification</button>
                     </form>
                 </div>

@@ -28,12 +28,13 @@ const notificationData = [
 const NotificationTable = () => {
 
     const [ notifications, setNotifications ] = useState(notificationData)
+    const [ selectNotification, setSelectNotifications ] = useState([])
     return <>
         <table className="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">
-                        <input type="checkbox" />
+                        <input type="checkbox"/>
                     </th>
                     <th scope="col">Notification Title</th>
                     <th scope="col">Notification Type</th>
@@ -48,7 +49,14 @@ const NotificationTable = () => {
                         <>
                             <tr>
                                 <th scope="row">
-                                    <input type="checkbox" />
+                                    <input type="checkbox" checked={selectNotification.includes(id)}
+                                        onChange={() => {
+                                            setSelectNotifications(
+                                                selectNotification.includes(id) ? 
+                                                selectNotification.filter(currentID => currentID !== id)
+                                                : [...selectNotification, id] 
+                                            )
+                                        }}/>
                                 </th>
                                 <td>{title}</td>
                                 <td>{type}</td>
