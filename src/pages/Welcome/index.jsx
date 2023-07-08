@@ -25,12 +25,13 @@ const cardContent = [
 
 export default function Welcome() {
     return <>
-        <div class="container text-left">
+        <div className="container text-left">
             <WelcomeBanner />
-            <div class="row">
+            <div className="row">
                 {
                     cardContent.map(({ title, link: Link, content }) => {
                         return <InfoCard
+                        key={title}
                             title={title}
                         >
                             <p className="card-text">{content}</p>
