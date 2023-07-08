@@ -1,0 +1,26 @@
+.card-body.welcome-banner{
+    display: flex;
+    padding: 10px 20px 10px 20px;
+}
+
+.card-body.welcome-banner .card-info{
+    padding: 10px 20px 10px 20px;
+    width: 50%;
+}
+.navbar{
+    padding: 10px 30px 10px 30px !important;
+}
+.navbar-nav{
+    flex-direction: row !important;
+}
+.navbar-nav .nav-link{
+    padding-right: 10px;
+}
+
+.screen{
+    padding: 10px 20px 10px 20px;
+}
+
+.notifi-header{
+    margin-bottom: 20px;
+}

@@ -3,7 +3,7 @@ export default function InfoCard ({children, title }) {
         <div className="col">
             <div className="card" style={{width: "18rem"}}>
                 <div className="card-body">
-                    <h5 className="card-title">{title}</h5>
+                    <h4 className="card-title">{title}</h4>
                     {children}
                 </div>
             </div>
