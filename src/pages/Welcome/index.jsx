@@ -1,7 +1,6 @@
 import Icons from "../../components/Icons"
 import InfoCard from "./InfoCard"
 import WelcomeBanner from "./Banner"
-import Header from "../Header"
 
 const cardContent = [
     {

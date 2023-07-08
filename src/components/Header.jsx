@@ -1,5 +1,5 @@
 import logo from '../assets/images/logo.png'
-import Icons from '../components/Icons'
+import Icons from './Icons'
 
 export default function Header({changeScreen}) {
 

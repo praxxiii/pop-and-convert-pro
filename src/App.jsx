@@ -1,9 +1,9 @@
 import './assets/main.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useState } from 'react';
-import Header from './pages/Header';
+import Header from './components/Header';
 import NotifiList from './pages/NotifiList';
-import Screen from './pages/Screen';
+import Screen from './components/Screen';
 import Welcome from './pages/Welcome';
 
 const screenList = {
