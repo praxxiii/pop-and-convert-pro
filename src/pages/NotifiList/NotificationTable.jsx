@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Icons from "../../components/Icons"
 
 const notificationData = [
@@ -25,7 +25,7 @@ const notificationData = [
     },
 
 ]
-const NotificationTable = () => {
+const NotificationTable = ({ currentText }) => {
 
     const [notifications, setNotifications] = useState(notificationData)
     const [selectNotification, setSelectNotifications] = useState([])
@@ -42,6 +42,17 @@ const NotificationTable = () => {
             notifications.filter(({ id: _id }) => _id !== id)
         )
     }
+
+    useEffect(() => {
+        let currentArray = [...notifications]
+        let foundMatch = currentArray.filter(({ title }) => {
+            return title.toLowerCase().includes(currentText.toLowerCase())
+        })
+
+        console.log(foundMatch)
+        setNotifications(foundMatch)
+
+    }, [currentText])
 
     return <>
         <table className="table table-striped">
