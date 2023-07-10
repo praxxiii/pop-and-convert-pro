@@ -43,17 +43,6 @@ const NotificationTable = ({ currentText }) => {
         )
     }
 
-    useEffect(() => {
-        let currentArray = [...notifications]
-        let foundMatch = currentArray.filter(({ title }) => {
-            return title.toLowerCase().includes(currentText.toLowerCase())
-        })
-
-        console.log(foundMatch)
-        setNotifications(foundMatch)
-
-    }, [currentText])
-
     return <>
         <table className="table table-striped">
             <thead>
@@ -76,7 +65,8 @@ const NotificationTable = ({ currentText }) => {
                 </tr>
             </thead>
             <tbody>
-                {notifications.map((items) => {
+                {notifications.filter(({ title }) => title.toLowerCase().includes(currentText.toLowerCase()))
+                    .map((items) => {
                     const { id, title, type, status, stats } = items
                     return (
                         <>
