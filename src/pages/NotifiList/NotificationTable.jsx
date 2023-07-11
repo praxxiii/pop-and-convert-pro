@@ -32,9 +32,7 @@ const NotificationTable = ({ currentText }) => {
 
     const handleCopyNotification = (items) => {
         let newObj = { ...items }
-        newObj.id = Math.floor(Math.random() * 2000) //need to find a better way to assign new ID
-        newObj.title = `${items.title}-Copy`
-        return setNotifications([...notifications, newObj])
+        return setNotifications([...notifications, {...newObj, id : Math.floor(Math.random() * 2000), title : `${items.title}-Copy`}])
     }
 
     const handleDeleteNotification = (id) => {
