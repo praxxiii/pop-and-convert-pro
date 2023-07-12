@@ -1,20 +1,35 @@
-export default function Pagination({currentPage, onPageClick, noOfItems}) {
-    return <>
-    <nav aria-label="...">
-        <ul class="pagination">
-            <li class="page-item disabled">
-                <a class="page-link">Previous</a>
-            </li>
+import { useState } from "react"
 
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item active" aria-current="page">
-                <a class="page-link" href="#">2</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-            </li>
-        </ul>
-    </nav>
+export default function Pagination({ currentPage, onPageClick, noOfItems, itemPerPage }) {
+
+    const [pageNumber, setPageNumbers] = useState(1)
+
+    const handlePaginationClick = (item) => {
+        setPageNumbers(item)
+        typeof onPageClick === 'function' && onPageClick()
+    }
+    
+    const length = Math.ceil(noOfItems / itemPerPage)
+
+    const listPageNumbers = Array.from({ length }, (item, index) => {
+        return <li key={index + 1} className={`page-item ${index +1 === pageNumber && 'active'}`}>
+            <a className="page-link" onClick={()=>handlePaginationClick(index+1)}>
+                {index + 1}
+            </a>
+        </li>
+    })
+
+    return <>
+        <nav aria-label="...">
+            <ul className="pagination">
+                <li className={`page-item ${pageNumber - 1 || 'disabled'}`}>
+                    <a className="page-link" onClick={()=>handlePaginationClick(pageNumber-1)}>Previous</a>
+                </li>
+                {listPageNumbers}
+                <li className={`page-item ${pageNumber + 1 > length && 'disabled'}`}>
+                    <a className="page-link" onClick={()=>handlePaginationClick(pageNumber+1)}>Next</a>
+                </li>
+            </ul>
+        </nav>
     </>
 }

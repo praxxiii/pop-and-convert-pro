@@ -13,7 +13,7 @@ const screenList = {
 
 function App() {
 
-	const [currentPage, setCurrentPage] = useState('home')
+	const [currentPage, setCurrentPage] = useState('list')
 	return (
 		<>
 			<Header changeScreen={setCurrentPage} />

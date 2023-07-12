@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Icons from "../../components/Icons"
+import Pagination from "./Pagination"
 
 const notificationData = [
     {
@@ -68,7 +69,7 @@ const NotificationTable = ({ currentText }) => {
                     const { id, title, type, status, stats } = items
                     return (
                         <>
-                            <tr>
+                            <tr key={id}>
                                 <th scope="row">
                                     <input type="checkbox" checked={selectNotification.includes(id)}
                                         onChange={() => {
@@ -120,6 +121,11 @@ const NotificationTable = ({ currentText }) => {
                 })}
             </tbody>
         </table>
+        <Pagination 
+            currentPage={2}
+            noOfItems={10}
+            itemPerPage={2}
+        />
     </>
 }
 
