@@ -2,43 +2,18 @@ import { useEffect, useState } from "react"
 import Icons from "../../components/Icons"
 import Pagination from "./Pagination"
 
-const notificationData = [
-    {
-        id: 1,
-        title: 'Notification 1',
-        type: 'sticky',
-        status: 'active',
-        stats: 249
-    },
-    {
-        id: 2,
-        title: 'Notification 2',
-        type: 'popup',
-        status: 'inactive',
-        stats: 340
-    },
-    {
-        id: 3,
-        title: 'Notification 3',
-        type: 'sticky',
-        status: 'active',
-        stats: 200
-    },
+const NotificationTable = ({ currentText, sendNotification, sendNotifiUpdater }) => {
 
-]
-const NotificationTable = ({ currentText }) => {
-
-    const [notifications, setNotifications] = useState(notificationData)
     const [selectNotification, setSelectNotifications] = useState([])
 
     const handleCopyNotification = (items) => {
         let newObj = { ...items }
-        return setNotifications([...notifications, {...newObj, id : Math.floor(Math.random() * 2000), title : `${items.title}-Copy`}])
+        return sendNotifiUpdater([...sendNotification, {...newObj, id : Math.floor(Math.random() * 2000), title : `${items.title}-Copy`}])
     }
 
     const handleDeleteNotification = (id) => {
-        setNotifications(
-            notifications.filter(({ id: _id }) => _id !== id)
+        sendNotifiUpdater(
+            sendNotification.filter(({ id: _id }) => _id !== id)
         )
     }
 
@@ -47,11 +22,11 @@ const NotificationTable = ({ currentText }) => {
             <thead>
                 <tr>
                     <th scope="col">
-                        <input type="checkbox" checked={notifications.length === selectNotification.length}
+                        <input type="checkbox" checked={sendNotification.length === selectNotification.length}
                             onChange={() => {
-                                notifications.length !== selectNotification.length ?
+                                sendNotification.length !== selectNotification.length ?
                                     setSelectNotifications(
-                                        notifications.map(({ id: currentID }) => currentID)
+                                        sendNotification.map(({ id: currentID }) => currentID)
                                     ) : setSelectNotifications([])
                             }}
                         />
@@ -64,7 +39,7 @@ const NotificationTable = ({ currentText }) => {
                 </tr>
             </thead>
             <tbody>
-                {notifications.filter(({ title }) => title.toLowerCase().includes(currentText.toLowerCase()))
+                {sendNotification.filter(({ title }) => title.toLowerCase().includes(currentText.toLowerCase()))
                     .map((items) => {
                     const { id, title, type, status, stats } = items
                     return (
@@ -88,8 +63,8 @@ const NotificationTable = ({ currentText }) => {
                                         <div className="form-check form-switch">
                                             <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked={status === 'active'}
                                                 onChange={() => {
-                                                    setNotifications(
-                                                        notifications.map(individualNotification => {
+                                                    sendNotifiUpdater(
+                                                        sendNotification.map(individualNotification => {
                                                             const { id: _notifiId, status } = individualNotification
                                                             if (_notifiId === id) {
                                                                 individualNotification.status = status === 'active' ? 'inactive' : 'active'
@@ -123,7 +98,7 @@ const NotificationTable = ({ currentText }) => {
         </table>
         <Pagination 
             currentPage={1}
-            noOfItems={10}
+            noOfItems={sendNotification.length}
             itemPerPage={2}
         />
     </>

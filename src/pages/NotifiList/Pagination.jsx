@@ -6,7 +6,7 @@ export default function Pagination({ currentPage, onPageClick, noOfItems, itemPe
 
     const handlePaginationClick = (item) => {
         setPageNumbers(item)
-        typeof onPageClick === 'function' && onPageClick()
+        typeof onPageClick === 'function' && onPageClick(item)
     }
 
     const length = Math.ceil(noOfItems / itemPerPage)
@@ -21,6 +21,7 @@ export default function Pagination({ currentPage, onPageClick, noOfItems, itemPe
 
     return <>
         <nav aria-label="...">
+            <p>Showing {itemPerPage} of {noOfItems} notifications</p>
             <ul className="pagination">
                 <li className={`page-item ${pageNumber - 1 || 'disabled'}`}>
                     <a className="page-link" onClick={()=>handlePaginationClick(pageNumber-1)}>Previous</a>
