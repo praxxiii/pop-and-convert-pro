@@ -122,7 +122,7 @@ const NotificationTable = ({ currentText }) => {
             </tbody>
         </table>
         <Pagination 
-            currentPage={2}
+            currentPage={1}
             noOfItems={10}
             itemPerPage={2}
         />

@@ -2,13 +2,13 @@ import { useState } from "react"
 
 export default function Pagination({ currentPage, onPageClick, noOfItems, itemPerPage }) {
 
-    const [pageNumber, setPageNumbers] = useState(1)
+    const [pageNumber, setPageNumbers] = useState(currentPage)
 
     const handlePaginationClick = (item) => {
         setPageNumbers(item)
         typeof onPageClick === 'function' && onPageClick()
     }
-    
+
     const length = Math.ceil(noOfItems / itemPerPage)
 
     const listPageNumbers = Array.from({ length }, (item, index) => {
