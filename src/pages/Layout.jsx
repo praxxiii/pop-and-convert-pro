@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom"
-import Welcome from "./Welcome"
+import Header from "../components/Header.jsx"
 
 const Layout = () => {
     return <>
-        <Welcome/>
-        <Outlet/>
+        <Header />
+        <Outlet />
     </>
 }
 
