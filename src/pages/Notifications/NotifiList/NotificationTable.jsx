@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react"
-import Icons from "../../components/Icons"
+import Icons from "../../../components/Icons"
 import Pagination from "./Pagination"
 
-const NotificationTable = ({ currentText, sendNotification, sendNotifiUpdater }) => {
-
+const NotificationTable = ({ currentText, notificationList }) => {
+    console.log(notificationList)
     const [selectNotification, setSelectNotifications] = useState([])
 
     const handleCopyNotification = (items) => {
         let newObj = { ...items }
-        return sendNotifiUpdater([...sendNotification, {...newObj, id : Math.floor(Math.random() * 2000), title : `${items.title}-Copy`}])
+        // return sendNotifiUpdater([...notificationList, {...newObj, id : Math.floor(Math.random() * 2000), title : `${items.title}-Copy`}])
     }
 
     const handleDeleteNotification = (id) => {
-        sendNotifiUpdater(
-            sendNotification.filter(({ id: _id }) => _id !== id)
-        )
+        // sendNotifiUpdater(
+            // notificationList.filter(({ id: _id }) => _id !== id)
+        // )
     }
 
     return <>
@@ -22,11 +22,11 @@ const NotificationTable = ({ currentText, sendNotification, sendNotifiUpdater })
             <thead>
                 <tr>
                     <th scope="col">
-                        <input type="checkbox" checked={sendNotification.length === selectNotification.length}
+                        <input type="checkbox" checked={notificationList.length === selectNotification.length}
                             onChange={() => {
-                                sendNotification.length !== selectNotification.length ?
+                                notificationList.length !== selectNotification.length ?
                                     setSelectNotifications(
-                                        sendNotification.map(({ id: currentID }) => currentID)
+                                        notificationList.map(({ id: currentID }) => currentID)
                                     ) : setSelectNotifications([])
                             }}
                         />
@@ -39,7 +39,7 @@ const NotificationTable = ({ currentText, sendNotification, sendNotifiUpdater })
                 </tr>
             </thead>
             <tbody>
-                {sendNotification.filter(({ title }) => title.toLowerCase().includes(currentText.toLowerCase()))
+                {notificationList.filter(({ title }) => title.toLowerCase().includes(currentText.toLowerCase()))
                     .map((items) => {
                     const { id, title, type, status, stats } = items
                     return (
@@ -62,17 +62,17 @@ const NotificationTable = ({ currentText, sendNotification, sendNotifiUpdater })
                                     {<>
                                         <div className="form-check form-switch">
                                             <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked={status === 'active'}
-                                                onChange={() => {
-                                                    sendNotifiUpdater(
-                                                        sendNotification.map(individualNotification => {
-                                                            const { id: _notifiId, status } = individualNotification
-                                                            if (_notifiId === id) {
-                                                                individualNotification.status = status === 'active' ? 'inactive' : 'active'
-                                                            }
-                                                            return individualNotification
-                                                        })
-                                                    )
-                                                }}
+                                                // onChange={() => {
+                                                //     sendNotifiUpdater(
+                                                //         notificationList.map(individualNotification => {
+                                                //             const { id: _notifiId, status } = individualNotification
+                                                //             if (_notifiId === id) {
+                                                //                 individualNotification.status = status === 'active' ? 'inactive' : 'active'
+                                                //             }
+                                                //             return individualNotification
+                                                //         })
+                                                //     )
+                                                // }}
                                             />
                                         </div>
                                     </>}
@@ -98,7 +98,7 @@ const NotificationTable = ({ currentText, sendNotification, sendNotifiUpdater })
         </table>
         <Pagination 
             currentPage={1}
-            noOfItems={sendNotification.length}
+            noOfItems={notificationList.length}
             itemPerPage={2}
         />
     </>

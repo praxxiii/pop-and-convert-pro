@@ -1,5 +1,5 @@
 import { createHashRouter } from "react-router-dom";
-import NotifiList from "./pages/NotifiList";
+import NotifiList from "./pages/Notifications/NotifiList";
 import { QueryClient } from "@tanstack/react-query";
 import Welcome from "./pages/Welcome";
 import Layout from "./pages/Layout";

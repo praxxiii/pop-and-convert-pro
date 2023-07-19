@@ -11,12 +11,10 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  
-		<QueryClientProvider client={queryClient}>
-			<RouterProvider router={hashRouter} />
-			<ReactQueryDevtools initialIsOpen={false} />
-		</QueryClientProvider>
-	
+	<QueryClientProvider client={queryClient}>
+		<RouterProvider router={hashRouter} />
+		<ReactQueryDevtools initialIsOpen={false} />
+	</QueryClientProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
