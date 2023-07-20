@@ -38,15 +38,13 @@ function NotifiList() {
 
 	const [findText, setFindText] = useState('')
 
-	const { data: items, loading } = useQuery(postQuery())
+	const { data: items, isLoading, isStale } = useQuery(postQuery())
 
-	loading &&
-		<h1>IT IS LoADING</h1>
+	if(isLoading) return <h1>IT IS LoADING</h1>
 	
 	return (
 		<>
 			<NotificationHeader searchText={setFindText} />
-			{console.log(items)}
 			<NotificationTable
 				currentText={findText}
 				notificationList = {items}
